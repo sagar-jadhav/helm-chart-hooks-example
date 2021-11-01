@@ -50,19 +50,24 @@
    Where:
    - `<Username>` is the username to log in to the docker hub.
 
-4. Move to `post-install-init-db` directory by running the following command:
+4. Create the repositories in [Docker Hub](https://hub.docker.com/) with the following names:
+
+   - post-install-db-init
+   - post-upgrade-add-data
+
+5. Move to `post-install-init-db` directory by running the following command:
 
    ```
    cd ./post-install-init-db
    ```
 
-5. Build `post-install` job docker image by running the following command:
+6. Build `post-install` job docker image by running the following command:
 
     ```
     docker build -t post-install-db-init:1.0.0 .
     ```
 
-6. Tag `post-install` job docker image by running the following command:
+7. Tag `post-install` job docker image by running the following command:
 
     ```
     docker tag post-install-db-init:1.0.0 <Username>/post-install-db-init:1.0.0
@@ -71,7 +76,7 @@
    Where:
    - `<Username>` is the username to log in to the docker hub.
 
-7. Push `post-install` job docker image by running the following command:
+8. Push `post-install` job docker image by running the following command:
 
    ```
    docker push <Username>/post-install-db-init:1.0.0
@@ -80,25 +85,25 @@
    Where:
    - `<Username>` is the username to log in to the docker hub. 
 
-8. Move out of `post-install-init-db` directory by running the following command:
+9. Move out of `post-install-init-db` directory by running the following command:
 
    ```
    cd ..
    ```
 
-9. Move to `post-upgrade-add-data` by running the following command:
+10. Move to `post-upgrade-add-data` by running the following command:
 
    ```
    cd ./post-upgrade-add-data
    ```
 
-10. Build `post-upgrade` job docker image by running the following command:
+11. Build `post-upgrade` job docker image by running the following command:
 
      ```
      docker build -t post-upgrade-add-data:1.0.0 .
      ```
 
-11. Tag `post-upgrade` job docker image by running the following command:
+12. Tag `post-upgrade` job docker image by running the following command:
 
      ```
      docker tag post-upgrade-add-data:1.0.0 <Username>/post-upgrade-add-data:1.0.0
@@ -107,7 +112,7 @@
      Where:
      - `<Username>` is the username to log in to the docker hub.
 
-12. Push `post-upgrade` job docker image by running the following command:
+13. Push `post-upgrade` job docker image by running the following command:
 
       ```
        docker push <Username>/post-upgrade-add-data:1.0.0
@@ -116,21 +121,21 @@
        Where:
        - `<Username>` is the username to log in to the docker hub.
 
-13. Move out of `post-upgrade-add-data` directory by running the following command:
+14. Move out of `post-upgrade-add-data` directory by running the following command:
 
       ```
       cd ..
      ```
 
-14. Provision a single-node Kubernetes cluster.
+15. Provision a single-node Kubernetes cluster.
 
-15. Create the following directories in the Kubernetes node:
+16. Create the following directories in the Kubernetes node:
 
       - /root/db-data
       - /root/share
       - /root/scripts
 
-16. Replace `<DockerHub Username>` with the username to log in to the docker hub in `values.yaml` file located at `<Path to helm-chart-hooks-example>/mysql/values.yaml` location.
+17. Replace `<DockerHub Username>` with the username to log in to the docker hub in `values.yaml` file located at `<Path to helm-chart-hooks-example>/mysql/values.yaml` location.
 
  ### Demo
 

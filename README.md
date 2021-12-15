@@ -137,6 +137,26 @@
 
 17. Replace `<DockerHub Username>` with the username to log in to the docker hub in `values.yaml` file located at `<Path to helm-chart-hooks-example>/mysql/values.yaml` location.
 
+18. Create a file with name `rename-backup.sh` at `/root/share/post-backup` location and add the following content into it:
+
+    ```
+    #!/bin/bash
+    # Rename backup file.
+    if [[ -n "$DB_DUMP_DEBUG" ]]; then
+      set -x
+    fi
+
+    if [ -e ${DUMPFILE} ];
+    then
+     new_name=mysql-backup.gz
+     old_name=$(basename ${DUMPFILE})
+     echo "Renaming backup file from ${old_name} to ${new_name}"
+     cp ${DUMPFILE} /db/${new_name}
+    else
+     echo "ERROR: Backup file ${DUMPFILE} does not exist!"
+    fi
+    ```
+
  ### Demo
 
  1. Install the `MySQL` application by running the following command:
